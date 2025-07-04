@@ -1,0 +1,247 @@
+body {
+  font-family: "Segoe UI", sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f6f8fa;
+  color: #333;
+  overflow-x: auto;
+}
+
+/* 頁首 */
+header {
+  background-color: #1a73e8;
+  color: white;
+  padding: 1rem 2rem;
+  text-align: center;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+/* 題目清單容器 */
+.problem-list {
+  min-width: 800px;
+  width: 90%;
+  margin: 2rem auto;
+  padding: 0 1rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 1rem;
+}
+
+/* 題目卡片樣式 */
+.problem-card {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  background-color: white;
+  padding: 1rem;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+  cursor: pointer;
+  transition: transform 0.1s ease, box-shadow 0.2s ease;
+  font-weight: 500;
+  font-size: 16px;
+}
+
+.problem-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+  border-color: #1a73e8;
+  color: #1a73e8;
+}
+
+/* 右側勾勾 ✔ 樣式 */
+.check-icon {
+  color: rgb(128, 211, 128);
+  font-weight: bold;
+  font-size: 18px;
+  margin-left: 1rem;
+  flex-shrink: 0;
+}
+
+
+.question-container {
+  max-width: 800px;
+  width: 80%;
+  margin: 2rem auto;
+  background-color: white;
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.question-container h2 {
+  color: #1a73e8;
+}
+
+.question-container h3 {
+  margin-top: 1.5rem;
+}
+
+.question-container pre {
+  background: #f0f0f0;
+  padding: 1rem;
+  border-radius: 6px;
+  overflow-x: auto;
+}
+
+.return-button {
+  margin-top: 2rem;
+  padding: 0.6rem 1.2rem;
+  background-color: #1a73e8;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.return-button:hover {
+  background-color: #155ac5;
+}
+
+a{
+  margin-left: 50px;
+}
+
+#signIn {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  padding: 10px 20px;
+  background: linear-gradient(45deg, #4A90E2, #357ABD);
+  color: white;
+  font-weight: 600;
+  font-size: 16px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  box-shadow: 0 4px 8px rgba(53, 122, 189, 0.4);
+  transition: background 0.3s ease, box-shadow 0.3s ease, transform 0.2s ease;
+  user-select: none;
+  z-index: 1000;
+}
+
+#signIn:hover {
+  background: linear-gradient(45deg, #357ABD, #4A90E2);
+  box-shadow: 0 6px 12px rgba(53, 122, 189, 0.7);
+  transform: translateY(-2px);
+}
+
+#signIn:active {
+  background: #2C5EA7;
+  box-shadow: 0 2px 6px rgba(44, 94, 167, 0.7);
+  transform: translateY(0);
+}
+
+.popupOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.4);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+
+.popupCSS {
+  background-color: #fff;
+  padding: 30px 40px;
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+  width: 400px;
+  max-width: 90%;
+  font-family: sans-serif;
+}
+
+.popupCSS h1 {
+  margin-top: 0;
+  font-size: 24px;
+  text-align: center;
+  color: #333;
+}
+
+.popupCSS label {
+  display: block;
+  margin-top: 15px;
+  font-weight: bold;
+  color: #555;
+}
+
+.popupInput {
+  width: 100%;
+  padding: 10px;
+  margin-top: 5px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  box-sizing: border-box;
+}
+
+.popupBtnGroup {
+  margin-top: 25px;
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+.popupBtn {
+  padding: 8px 16px;
+  font-size: 14px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.popupBtn.cancel {
+  background-color: #ccc;
+  color: #333;
+}
+
+.popupBtn.cancel:hover {
+  background-color: #bbb;
+}
+
+.popupBtn.confirm {
+  background-color: #4A90E2;
+  color: white;
+}
+
+.popupBtn.confirm:hover {
+  background-color: #357ABD;
+}
+
+/* 章節分隔線 */
+.section-divider {
+  border: none;            /* 去掉預設邊框 */
+  height: 1px;             /* 線條高度 */
+  background-color: #ccc;  /* 線條顏色 */
+  margin: 1.5rem 0;        /* 上下間距 */
+}
+
+/* 可選：讓分隔線稍微縮排，看起來不那麼滿版 */
+.section-divider {
+  width: 100%;
+  margin-left: 5%;
+}
+
+.problem-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 1rem;
+}
+
+/* 讓分隔線跨滿所有欄 */
+.problem-list .section-divider {
+  grid-column: 1 / -1;       /* 從第 1 欄跨到最後一欄 */
+  border: none;              /* 移除預設線框 */
+  height: 1px;               /* 線條高度 */
+  background-color: #ccc;    /* 線條顏色 */
+  margin: 1.5rem 0;          /* 與上下項目保留間距 */
+}
