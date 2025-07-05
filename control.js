@@ -1,7 +1,8 @@
 let user = null;
 const password = {
   'tommy' : '0705',
-  'mcWhite0863' : 'Jerry1108'
+  'mcWhite0863' : 'Jerry1108',
+  'Brian' : '1229'
 };
 
 const userInfo = {
@@ -10,5 +11,8 @@ const userInfo = {
   },
   'mcWhite0863' : {
     'ac' : ['A001','A002','A005','A006','E002']
+  },
+  'Brian' : {
+    'ac' : []
   }
 }
