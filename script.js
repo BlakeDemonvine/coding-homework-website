@@ -27,7 +27,7 @@ function showQuestion(id) {
         <pre>${s.output}</pre>
       `).join("")}
 
-      <button class="return-button" onclick="location.reload()">回到題目列表</button>
+      <button class="return-button" onclick="goBack()">回到題目列表</button>
     </div>
   `;
 }
@@ -41,6 +41,11 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 
+function goBack(){
+  document.querySelector(".problem-list").style.display = 'grid';
+  document.getElementById("change").innerHTML = '';
+  window.scrollTo(0, 0);
+}
 
 function signIn() {
   if(user) return;
@@ -112,6 +117,7 @@ function signIn() {
       document.getElementById('signIn').textContent = `🧑‍💻${input1.value}`;
       user = input1.value;
       showCards();
+      showEnvelope();
     }
     else{
       error.style.display = 'block';
