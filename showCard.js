@@ -2129,9 +2129,187 @@ function showCards() {
   }
 }
 
+
+function showEnvelope() {
+  const old = document.getElementById('envelope');
+  if (old) old.remove();
+
+  const btn = document.getElementById("signIn");
+  const rect = btn.getBoundingClientRect();
+
+  // 外層容器：決定在畫面上出現的位置
+  const outer = document.createElement('div');
+  outer.id = 'envelope';
+  outer.style.position = 'absolute';
+  outer.style.right = `${(window.innerWidth - rect.left + rect.width)/2+10}px`;
+  outer.style.top = `${rect.top + window.scrollY}px`;
+  outer.style.scale = '0.9';
+
+  // 圖片包裝器：讓紅點能 absolute 定位在右上角
+  const imgWrapper = document.createElement('div');
+  imgWrapper.style.position = 'relative';
+  imgWrapper.style.display = 'inline-block';
+
+  const img = document.createElement('img');
+  img.src = 'image/envelope.png';
+  img.style.height = `${rect.height}px`;
+  img.style.display = 'block';
+
+  imgWrapper.appendChild(img);
+
+  // 紅點
+  if(user && Object.keys(userInfo[user]['message']).length>0){
+    const redDot = document.createElement('div');
+    redDot.style.backgroundColor = 'red';
+    redDot.style.width = `${rect.height / 2}px`;
+    redDot.style.height = `${rect.height / 2}px`;
+    redDot.style.borderRadius = '50%';
+    redDot.style.position = 'absolute';
+    redDot.style.top = '-8px';
+    redDot.style.right = '-8px';
+    redDot.style.zIndex = '9999';
+    redDot.textContent = Object.keys(userInfo[user]['message']).length;
+    redDot.style.textAlign = 'center';
+    redDot.style.color = 'white';
+    redDot.style.fontWeight = 'bold';
+    outer.style.zIndex = '9999';
+    imgWrapper.appendChild(redDot);
+  }
+
+  outer.addEventListener('mouseover', () => {
+    //console.log('滑鼠移到 envelope 上了');
+    outer.style.scale = '1';
+  });
+
+  outer.addEventListener('mouseout', () => {
+    //console.log('滑鼠離開 envelope 了');
+    outer.style.scale = '0.9';
+  });
+
+  outer.addEventListener('click', () => {
+    //console.log('點擊了 envelope');
+    if(!user){
+      alert('請先登入才能查看教師訊息');
+    }
+    else{
+      showMessage(userInfo[user]['message']);
+    }
+  });
+
+  
+
+
+  // 組合
+  outer.appendChild(imgWrapper);
+  document.body.appendChild(outer);
+}
+
+function showMessage(input){
+  const main = document.getElementById("change");
+  document.querySelector(".problem-list").style.display = 'none';
+  main.innerHTML = '';
+  let content = document.createElement('div');
+  content.classList.add('question-container');
+  let title = document.createElement('h2');
+  title.textContent = '教師訊息';
+  content.appendChild(title);
+
+  if(Object.keys(input).length==0){
+    let message1 = document.createElement('h3');
+    message1.textContent = '暫無訊息';
+    content.appendChild(message1);
+  }
+
+  for(let id in input){
+    let block = document.createElement('div');
+    let title1 = document.createElement('h3');
+    if(input[id]['correction']){
+      title1.innerHTML = `作業${id}<span style="color: lightGreen;">正確</span>`;
+    }
+    else if(!input[id]['correction']){
+      title1.innerHTML = `作業${id}<span style="color: red;">錯誤</span>`;
+    }
+    title1.style.width = '1000px';
+    block.appendChild(title1);
+    let description = document.createElement('p');
+    description.textContent = input[id]['description'];
+    description.style.whiteSpace = 'nowrap';
+    description.style.overflow = 'hidden';
+    description.style.textOverflow = 'ellipsis';
+    description.style.color = 'grey';
+    block.classList.add('problem-card');
+    block.appendChild(description);
+
+    block.addEventListener('click', () => {
+      showSpecificMessage(input,id,title1.innerHTML);
+    });
+
+    content.appendChild(block);
+  }
+
+  let btn = document.createElement('button');
+  btn.textContent = '回到題目列表';
+  btn.addEventListener('click', () => {
+    goBack();
+  });
+  btn.classList.add('return-button');
+  content.appendChild(btn);
+
+
+  main.appendChild(content);
+  /*
+  main.innerHTML = `
+    <div class="question-container">
+      <h2>${id}: ${q.title}</h2>
+      <h3>📘 題目描述</h3>
+      <p>${q.description}</p>
+
+      <h3>📥 輸入說明</h3>
+      <p>${q.input}</p>
+
+      <h3>📤 輸出說明</h3>
+      <p>${q.output}</p>
+
+      ${q.samples.map((s, i) => `
+        <h3>🔢 Sample Input ${i + 1}</h3>
+        <pre>${s.input}</pre>
+        <h3>✅ Sample Output ${i + 1}</h3>
+        <pre>${s.output}</pre>
+      `).join("")}
+
+      <button class="return-button" onclick="goBack()">回到題目列表</button>
+    </div>
+  `;
+  */
+}
+
+function showSpecificMessage(input,id,word){
+  const main = document.getElementById("change");
+  document.querySelector(".problem-list").style.display = 'none';
+  
+  main.innerHTML = `
+    <div class="question-container">
+      <h2>${word}</h2>
+      <h3>📝 教師訊息</h3>
+      <p>${input[id]['description']}</p>
+
+      <h3>💻 範例程式碼</h3>
+      <pre>${input[id]['samplesCode']}</pre>
+
+
+
+      <button id='returnBtn' class="return-button">回到訊息列表</button>
+    </div>
+  `;
+  returnBtn.addEventListener('click', () => {
+    showMessage(input);
+  });
+ 
+}
+
+
+//if(user && Object.keys(userInfo[user]['message']).length>0)
+
 document.addEventListener("DOMContentLoaded", showCards);
-
-
-
-
 showCards();
+showEnvelope();
