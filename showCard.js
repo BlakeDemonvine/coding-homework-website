@@ -2151,7 +2151,7 @@ function showEnvelope() {
   imgWrapper.style.display = 'inline-block';
 
   const img = document.createElement('img');
-  img.src = 'image/envelope.png';
+  img.src = 'envelope.png';
   img.style.height = `${rect.height}px`;
   img.style.display = 'block';
 
