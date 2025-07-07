@@ -121,7 +121,7 @@ a{
   box-shadow: 0 4px 8px rgba(53, 122, 189, 0.4);
   transition: background 0.3s ease, box-shadow 0.3s ease, transform 0.2s ease;
   user-select: none;
-  z-index: 1000;
+  z-index: 10;
 }
 
 #signIn:hover {
@@ -244,4 +244,10 @@ a{
   height: 1px;               /* 線條高度 */
   background-color: #ccc;    /* 線條顏色 */
   margin: 1.5rem 0;          /* 與上下項目保留間距 */
+}
+
+.my-text {
+  white-space: nowrap;        /* 不換行 */
+  overflow: hidden;           /* 超出內容隱藏 */
+  text-overflow: ellipsis;    /* 超出的部分用 ... 表示 */
 }
