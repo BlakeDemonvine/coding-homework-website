@@ -18,17 +18,7 @@ const userInfo = {
   'Brian' : {
     'ac' : ['A001','A011','B001','B002','D001'],
     'message' : {
-      'B001' : {
-        'correction':true,
-        'description':'程式正確。首先有正確使用input語法【名稱 = input()】。其次有正確使用print輸出，輸出變數的值。',
-        'samplesCode': '<無>'
-      },
-      'D001' : {
-        'correction':true, 
-        'description':'程式正確。首先有正確使用input語法【名稱 = input()】。其次有正確使用len函式計算str變數的長度，並在最後輸出計算後的值。',
-        'samplesCode': '<無>'
-      }
-      
+            
     }
   },
   'Justin' : {
