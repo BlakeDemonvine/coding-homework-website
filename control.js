@@ -16,7 +16,7 @@ const userInfo = {
     'message' : []
   },
   'Brian' : {
-    'ac' : ['A001','A011','B001','B002','D001'],
+    'ac' : ['A001','A002','A011','B001','B002','D001'],
     'message' : {
          'A002' : {
             'correction':true,
