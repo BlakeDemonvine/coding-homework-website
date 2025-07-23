@@ -18,7 +18,16 @@ const userInfo = {
   'Brian' : {
     'ac' : ['A001','A011','B001','B002','D001'],
     'message' : {
-            
+         'A002' : {
+            'correction':true,
+            'description':'程式正確。使用到上課還沒說過的f-string（格式化字串）。下次可以試看看上課學到的round(), Math.ceil(), Math.floor()',
+            'samplesCode': 'PI=3.257\nprint(round(PI*2,2))'
+          },
+          'B003' : {
+            'correction':false,
+            'description':'程式錯誤。並沒有使用到input()去輸入。正確應該要使用.split()去分開輸入之後依次輸出',
+            'samplesCode': 'a,b,c = input().split()\nprint(a)\nprint(b)\nprint(c)'
+          },
     }
   },
   'Justin' : {
